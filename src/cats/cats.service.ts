@@ -11,10 +11,10 @@ export class CatsService {
 
   constructor(
     @InjectRepository(Cat)
-    private catRepository: Repository<Cat>,
+    private readonly catRepository: Repository<Cat>,
 
     @InjectRepository(Breed)
-    private breedRepository: Repository<Breed>,
+    private readonly breedRepository: Repository<Breed>,
   ) { }
 
   async create(createCatDto: CreateCatDto) {

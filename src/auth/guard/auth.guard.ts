@@ -7,6 +7,7 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
+import { Role } from 'src/enums/role.enum';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -21,7 +22,7 @@ export class AuthGuard implements CanActivate {
       throw new UnauthorizedException();
     }
     try {
-      const payload = await this.jwtService.verifyAsync<{ email: string; }>(token);
+      const payload = await this.jwtService.verifyAsync<{ email: string; role: Role }>(token);
       request['user'] = payload;
     } catch {
       throw new UnauthorizedException();

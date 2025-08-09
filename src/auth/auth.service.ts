@@ -22,7 +22,8 @@ export class AuthService {
         if (!isPasswordValid) throw new UnauthorizedException("Invalid credentials");
 
         const payload = {
-            email: user.email
+            email: user.email,
+            role: user.role
         }
 
         return {

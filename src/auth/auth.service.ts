@@ -4,6 +4,7 @@ import bcrypt from 'node_modules/bcryptjs';
 import { registerDto } from './dto/register.dto';
 import { loginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
+import ActiveUserInterface from 'src/common/interface/user-active-interface';
 
 @Injectable()
 export class AuthService {
@@ -15,7 +16,7 @@ export class AuthService {
 
     async login({ email, password }: loginDto) {
 
-        const user = await this.usersService.findOneByEmail(email);
+        const user = await this.usersService.findOneByEmailWithPassword(email);
         if (!user) throw new UnauthorizedException("Invalid credentials");
 
         const isPasswordValid = bcrypt.compareSync(password, user.password);
@@ -45,6 +46,10 @@ export class AuthService {
             }
         );
 
+    }
+
+    async profile(user : ActiveUserInterface) {
+        return await this.usersService.findOneByEmail(user.email);
     }
 
 }

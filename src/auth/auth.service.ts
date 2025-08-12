@@ -28,14 +28,9 @@ export class AuthService {
         }
 
         return {
-            access_token: await this.jwtService.signAsync(payload),
-            user: {
-                name: user.name,
-                email: user.email,
-                role: user.role
-            }
+            token: await this.jwtService.signAsync(payload),
+            email: user
         };
-
     }
 
     async register({ name, email, password }: registerDto) {

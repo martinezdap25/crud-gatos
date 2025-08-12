@@ -4,7 +4,9 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Auth } from 'src/auth/decorators/auth.decorators';
 import { Role } from 'src/common/enums/role.enum';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @Auth(Role.Admin)
 @Controller('users')
 export class UsersController {

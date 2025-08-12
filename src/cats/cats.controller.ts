@@ -6,7 +6,9 @@ import { Auth } from 'src/auth/decorators/auth.decorators';
 import { Role } from 'src/common/enums/role.enum';
 import type ActiveUserInterface from 'src/common/interface/user-active-interface';
 import { ActiveUser } from 'src/common/decorators/active-user.decorator';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @Auth(Role.User)
 @Controller('cats')
 export class CatsController {

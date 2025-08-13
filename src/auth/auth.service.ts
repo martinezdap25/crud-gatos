@@ -29,7 +29,7 @@ export class AuthService {
 
         return {
             token: await this.jwtService.signAsync(payload),
-            email: user
+            email: user.email
         };
     }
 
@@ -48,7 +48,7 @@ export class AuthService {
 
     }
 
-    async profile(user : ActiveUserInterface) {
+    async profile(user: ActiveUserInterface) {
         return await this.usersService.findOneByEmail(user.email);
     }
 
